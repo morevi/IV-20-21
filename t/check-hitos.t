@@ -177,6 +177,9 @@ SKIP: {
         $response = $ua->put( $URI => json => $payload );
         is( $response->res->code, 201, "Respuesta a la petición $metodo sobre $URI es correcta");
         ok( $response->headers->Location, '$response->headers->Location tiene el valor correcto' );
+        my $location = $response->res->headers->location;
+        ok( $location, '$response->headers->Location tiene el valor correcto' );
+        is( $ua->get($url_PaaS.$location)->res->code, 200, "Se puede bajar el creado $i" );
       }
     } else {
       my $json = $jsoner->encode( force_numbers($payload) );
