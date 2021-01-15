@@ -184,8 +184,14 @@ SKIP: {
       }
     } else {
       my $json = $jsoner->encode( force_numbers($payload) );
+      my $response = $ua->post( $prefix => $json );
+      my $mode = ($response->res->code == 400 )?"form":"json";
       for (my $i = 0; $i <= 3; $i ++ ) {
-        $response = $ua->post( $prefix => $json );
+        if ( $mode eq "json" ) {
+          $response = $ua->post( $prefix => $json );
+        } else {
+          $response = $ua->post( $prefix => form => $payload );
+        }
         is( $response->res->code, 201, "Respuesta a la petición $metodo sobre $prefix es correcta");
         my $location = $response->res->headers->location;
         ok( $location, '$response->headers->Location tiene el valor correcto' );
