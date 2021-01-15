@@ -185,10 +185,16 @@ SKIP: {
     } else {
       my $json = $jsoner->encode( force_numbers($payload) );
       my $response = $ua->post( $prefix => $json );
-      my $mode = ($response->res->code == 400 )?"form":"json";
+      my $mode = "json";
+      if ($response->res->code == 400 ) {
+        $response = $ua->post( $prefix => json => $payload );
+        $mode = ($response->res->code == 400)?"form":"json-plain";
+      }
       for (my $i = 0; $i <= 3; $i ++ ) {
         if ( $mode eq "json" ) {
           $response = $ua->post( $prefix => $json );
+        } elsif ($mode eq "json-plain") {
+          $response = $ua->post( $prefix => json => $payload );
         } else {
           $response = $ua->post( $prefix => form => $payload );
         }
