@@ -176,10 +176,11 @@ SKIP: {
         my $URI = "$prefix/$id";
         $response = $ua->put( $URI => json => $payload );
         is( $response->res->code, 201, "Respuesta a la petición $metodo sobre $URI es correcta");
-        ok( $response->headers->Location, '$response->headers->Location tiene el valor correcto' );
+        ok( $response->res->headers->location, '$response->headers->Location tiene el valor correcto' );
         my $location = $response->res->headers->location;
         ok( $location, '$response->headers->Location tiene el valor correcto' );
-        is( $ua->get($url_PaaS.$location)->res->code, 200, "Se puede bajar el creado $i" );
+        my $get_URI = ( $location =~ /http/ )? $location : $url_PaaS.$location;
+        is( $ua->get($get_URI)->res->code, 200, "Se puede bajar el creado $id" );
       }
     } else {
       my $json = $jsoner->encode( force_numbers($payload) );
