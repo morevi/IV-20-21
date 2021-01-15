@@ -195,7 +195,8 @@ SKIP: {
         is( $response->res->code, 201, "Respuesta a la petición $metodo sobre $prefix es correcta");
         my $location = $response->res->headers->location;
         ok( $location, '$response->headers->Location tiene el valor correcto' );
-        is( $ua->get($url_PaaS.$location)->res->code, 200, "Se puede bajar $location" );
+        my $get_URI = ( $location =~ /http/ )? $location : $url_PaaS.$location;
+        is( $ua->get($get_URI)->res->code, 200, "Se puede bajar $location" );
       }
     }
   }
