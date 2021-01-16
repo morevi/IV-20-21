@@ -8,7 +8,7 @@
 | CHEKFEH AL-SABBAGH, MOHAMED BILAL| | |
 | COCA CRUZ, SIXTO| | |
 | CUADROS LAPRESTA, ANTONIO| [WhenToClass](https://github.com/antoniocuadros/WhenToClass) | v1.7.6 |
-| DEL POZO MORENO, RAUL| [InmobilIV](https://github.com/rauldpm/InmobilIV) | v7.0.4 | 
+| DEL POZO MORENO, RAUL| [InmobilIV](https://github.com/rauldpm/InmobilIV) | v7.0.4 |
 | FERNANDEZ TORRALBO, MIGUEL ANGEL| | |
 | GAMIZ DELGADO, ANTONIO | | |
 | GARCIA BENCHAKHTIR, YABIR| [Bukhgalter](https://github.com/yabirgb/bukhgalter) | v8.0.4 |
@@ -24,7 +24,7 @@
 | LUPIAÑEZ TAPIA, GUILLERMO | | |
 | LUQUE JARAVA, BLANCA| | |
 | MARTIN LEON, ANTONIO| | |
-| MENOR MOLINERO, ALEJANDRO|[que-vemos](https://github.com/AlexMenor/que-vemos) | v1.0.9 | 
+| MENOR MOLINERO, ALEJANDRO|[que-vemos](https://github.com/AlexMenor/que-vemos) | v1.0.9 |
 | MERELO MOLINA, CECILIA| | |
 | MERELO MOLINA, ELENA| | |
 | MOLINERO CASTILLO, JONATHAN| | |
@@ -32,7 +32,7 @@
 | MORENO VILCHEZ, FRANCISCO JOSE| | |
 | NUÑEZ RUIZ, MANUEL JESUS| [footStats](https://github.com/ManuelJNunez/footStats) | v7.0.1 |
 | PALOMINO SANCHEZ, GUILLERMO| | |
-| PELEGRINA PELEGRINA, JOSE MIGUEL| [OrganizeUDiet](https://github.com/josemip98/OrganizeUDiet) | v4.0.1 |
+| PELEGRINA PELEGRINA, JOSE MIGUEL| | |
 | PEREZ MENDEZ, PABLO| | |
 | PINEDA MUÑOZ, JUAN CARLOS| | |
 | PRIETO INFANTE, JAVIER| | |
