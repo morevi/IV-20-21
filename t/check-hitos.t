@@ -176,11 +176,11 @@ SKIP: {
         my $URI = "$prefix/$id";
         $response = $ua->put( $URI => json => $payload );
         is( $response->res->code, 201, "Respuesta a la petición $metodo sobre $URI es correcta");
-        ok( $response->res->headers->location, '$response->headers->Location tiene el valor correcto' );
         my $location = $response->res->headers->location;
-        ok( $location, '$response->headers->Location tiene el valor correcto' );
-        my $get_URI = ( $location =~ /http/ )? $location : $url_PaaS.$location;
-        is( $ua->get($get_URI)->res->code, 200, "Se puede bajar el creado $id" );
+        if ( ok( $location, "«location» $location devuelto" ) ) {
+          my $get_URI = ( $location =~ /http/ )? $location : $url_PaaS.$location;
+          is( $ua->get($get_URI)->res->code, 200, "Se puede bajar el creado $id" );
+        }
       }
     } else {
       my $json = $jsoner->encode( force_numbers($payload) );
@@ -200,9 +200,10 @@ SKIP: {
         }
         is( $response->res->code, 201, "Respuesta a la petición $metodo sobre $prefix es correcta");
         my $location = $response->res->headers->location;
-        ok( $location, '$response->headers->Location tiene el valor correcto' );
-        my $get_URI = ( $location =~ /http/ )? $location : $url_PaaS.$location;
-        is( $ua->get($get_URI)->res->code, 200, "Se puede bajar $location" );
+        if ( ok( $location, "location «$location» devuelto" ) ) {
+          my $get_URI = ( $location =~ /http/ )? $location : $url_PaaS.$location;
+          is( $ua->get($get_URI)->res->code, 200, "Se puede bajar $location" );
+        }
       }
     }
   }
