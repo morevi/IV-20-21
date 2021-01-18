@@ -64,7 +64,7 @@ SKIP: {
   for my $f (@ficheros_objetivos) {
     if ($f ne $este_fichero ) {
       my $diff = `diff $f $este_fichero`;
-      diag "✗ Si tus objetivos cumplidos son diferentes, el fichero también debería serlo" 
+      diag "✗ Si tus objetivos cumplidos son diferentes, el fichero también debería serlo"
         unless isnt $diff, "", "El fichero de objetivos enviado no es idéntico a $f";
     }
   }
