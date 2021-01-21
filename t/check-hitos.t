@@ -184,6 +184,7 @@ SKIP: {
       }
     } else {
       my $json = $jsoner->encode( force_numbers($payload) );
+      diag "Testeando con\n$json";
       my $response = $ua->post( $prefix => $json );
       my $mode = "json";
       if ($response->res->code == 400 ) {
