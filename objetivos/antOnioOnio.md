@@ -65,10 +65,16 @@
 - [x] Entender la importancia de la única fuente de verdad en la programación
 
 
-## Objetivos última semana
+## Objetivos penúltima semana
 
 - [x] Entender bien el concepto de PaaS
 - [x] Hacer los [ejercicios de autoevaluación](https://github.com/antOnioOnio/IV-autoevaluacion/blob/master/paas.md)
 - [x] Aprender CI en heroku
 - [x] Estudiar persistencia con heroku
+
+
+## Objetivos última semana
+
+- [x] Corregir los fallos del hito 7
+- [x] Hacer los [ejercicios de autoevaluación](https://github.com/antOnioOnio/IV-autoevaluacion/blob/master/paas.md)
 
