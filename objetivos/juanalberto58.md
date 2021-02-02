@@ -18,3 +18,31 @@
 - [x] Realizar los ejercicios de Autoevaluación de la [Semana2](https://github.com/juanalberto58/EjerciciosIV.git).
 - [x] Aprender a como empezar a realizar el diseño de un proyecto real.
 - [x] Aprender a solucionar conflictos que puedan suceder con Git.
+
+## Tercera semana
+- [x] Comprender cómo las pruebas de software encajan dentro del concepto de infraestructura virtual.
+- [x] Usar los gestores de versiones en diferentes lenguajes de programación y entender su utilidad.
+- [x] Entender los ficheros de requisitos o dependencias y su utilidad en las infraestructuras virtuales.
+
+## Cuarta semana
+- [x] Aprender que es Docker y la funcionalidad que tiene.
+- [x] Aprender a construir ficheros Dockerfile para configurar contenedores.
+- [x] Seleccionar que imagen es la más adecuada para el proyecto.
+- [x] Actualizar el repositorio de [Ejercicios de Autoevaluación](https://github.com/juanalberto58/EjerciciosIV).
+
+## Sexta Semana
+
+- [x] Entender el concepto de integración continua y su importancia.
+- [x] Investigar sobre los distintos sistemas de integración continua.
+- [x] Hacer la configuración en Travis y Shippable.
+- [x] Entender la correcta configuración de estos sistemas.
+- [x] Realizar los ejercicios de autoevaluación de [integración continua](https://github.com/juanalberto58/EjerciciosIV)
+
+## Novena Semana
+
+- [x] Entender el concepto de Serverless.
+- [x] Investigar sobre los distintos sistemas de Serverless.
+- [x] Hacer la configuración en Vercel y Netlify.
+- [x] Entender la correcta configuración de estos sistemas.
+- [x] Realizar los ejercicios de autoevaluación de [Serverless](https://github.com/juanalberto58/EjerciciosIV)
+

@@ -11,11 +11,18 @@ use Git;
 use Mojo::UserAgent;
 use File::Slurper qw(read_text);
 use JSON;
+use JSON::XS;
 use Net::Ping;
 use Term::ANSIColor qw(:constants);
 use YAML qw(LoadFile);
+use IO::Socket::SSL;
+use Scalar::Util qw(looks_like_number);
 
 use v5.14; # For say
+
+unless ( $ENV{'TRAVIS_PULL_REQUEST'} =~ /\d/ ) {
+  plan skip_all => "Sólo debe ejecutarse en un pull request ".$ENV{'TRAVIS_PULL_REQUEST'};
+}
 
 # Allowed extensions for outline documents
 my $extensions = "(md|org)";
@@ -57,7 +64,7 @@ SKIP: {
   for my $f (@ficheros_objetivos) {
     if ($f ne $este_fichero ) {
       my $diff = `diff $f $este_fichero`;
-      diag "✗ Si tus objetivos cumplidos son diferentes, el fichero también debería serlo" 
+      diag "✗ Si tus objetivos cumplidos son diferentes, el fichero también debería serlo"
         unless isnt $diff, "", "El fichero de objetivos enviado no es idéntico a $f";
     }
   }
@@ -70,7 +77,7 @@ SKIP: {
 
   my $repo_dir = create_student_repo_dir( $url_repo, $mi_repo, $user, $name );
   my $student_repo = Git->repository ( Directory => $repo_dir );
-  
+
   my @repo_files = $student_repo->command("ls-files");
   say "Ficheros\n\t→", join( "\n\t→", @repo_files);
 
@@ -78,7 +85,6 @@ SKIP: {
   for my $f (qw( README\.(org|md|rst) \.gitignore LICENSE )) { # Tests 5-7
     isnt( grep( /$f/, @repo_files), 0, "$f presente" );
   }
-
 
   # Get the extension used for the README
   my ($readme_file) = grep( /^README/, @repo_files );
@@ -105,106 +111,102 @@ SKIP: {
     }
     ok( $iv->{'lenguaje'}, "Declaración de lenguaje correcta" );
   }
-  
-  if ( $this_hito >= 3 ) { # Comprobar milestones y eso
-    doing("hito 2");
-    isnt( grep( /.travis.yml/, @repo_files), 0, ".travis.yml presente" );
-    my $travis_domain = travis_domain( $README, $user, $name );
-    ok( $travis_domain =~ /(com|org)/ , "Está presente el badge de Travis con enlace al repo correcto");
-    if ( $travis_domain =~ /(com|org)/ ) {
-      is( travis_status($README), 'Passing', "Los tests deben pasar en Travis");
-    }
-  }
 
-  if ( $this_hito > 2 ) { # Usando la buildtool para desplegar microservicio
+  if ( $this_hito >= 3 ) {
     doing("hito 3");
-    my ($buildtool) = ($README =~ m{(?:buildtool:)\s+(\S+)\s+});
-    ok( $buildtool, "No he podido encontrar el fichero de build" );
-    isnt( grep( /$buildtool/, @repo_files), 0, "$buildtool presente" );
+    file_present( "Dockerfile", \@repo_files, " de contenedores" );
   }
 
-  if ( $this_hito > 3 ) { # Despliegue en algún lado
+  if ( $this_hito >= 4 ) { # Comprobar milestones y eso
     doing("hito 4");
-    my ($deployment_url) = ($README =~ m{(?:[Dd]espliegue|[Dd]eployment):\s+(https?://\S+)\b});
-    if ( $deployment_url ) {
-      diag "☑ Hallado URL de despliegue $deployment_url";
+    isnt( grep( /.travis.yml/, @repo_files), 0, ".travis.yml presente" );
+  }
+
+  if ( $this_hito >= 5 ) { # Despliegue en algún lado
+    doing("hito 5");
+    my $serverless_url = $iv->{'URL'};
+    if ( $serverless_url ) {
+      diag "☑ Hallado URL de despliegue $serverless_url";
     } else {
       diag "✗ Problemas extrayendo URL de despliegue";
     }
-    ok( $deployment_url, "URL de despliegue hito 3");
-  SKIP: {
-      skip "Ya en el hito siguiente", 2 unless $this_hito == 4;
-      my $status = $ua->get("$deployment_url/status");
-      if ( ! $status || $status =~ /html/ ) {
-	$status = $ua->get( "$deployment_url/status"); # Por si acaso han movido la ruta
-      }
-      ok( $status->res, "Despliegue hecho en $deployment_url" );
-      say "Respuesta ", $status->res;
-      like( $status->res->headers->content_type, qr{application/json}, "Status devuelve application/json");
-      say "Content Type ", $status->res->headers->content_type;
-      my $status_ref = json_from_status( $status );
-      like ( $status_ref->{'status'}, qr/[Oo][Kk]/, "Status $status_ref de $deployment_url correcto");
-    }
+    ok( $serverless_url, "URL de despliegue hito 5 $serverless_url correcta");
+    my $status = $ua->get("$serverless_url");
+    ok( $status->res, "Despliegue hecho en $serverless_url" );
+    my $serverless_json =  read_text( "$repo_dir/5.json");
+    cmp_ok( $status->res->text, "eq", $serverless_json, "Match de resultado de $serverless_url");
   }
 
-  if ( $this_hito > 4 ) { # Dockerfile y despliegue
-    doing("hito 5");
-    my ($deployment_url) = ($README =~ /(?:[Cc]ontenedor|[Cc]ontainer).+(https?:..\S+)\b/);
-    if ( $deployment_url ) {
-      diag "☑ Detectado URL de despliegue Docker $deployment_url";
-    } else {
-      diag "✗ Problemas detectando URL de despliegue de Docker";
-    }
-    isnt( grep( /Dockerfile/, @repo_files), 0, "Dockerfile presente" );
-
-    my ($dockerhub_url) = ($README =~ m{(https://hub.docker.com/r/\S+)\b});
-    unlike($README, qr/docker\.com\/repository/, "No se usa URL privado en dockerhub");
-    ok($dockerhub_url, "Detectado URL de DockerHub");
-    $dockerhub_url .= "/" if $dockerhub_url !~ m{/$}; # Para evitar redirecciones y errores
-    diag "Detectado URL de Docker Hub '$dockerhub_url'";
-
-    if ( ok( $deployment_url,  "URL de despliegue hito 4") ) {
-    SKIP: {
-	skip "Ya en el hito siguiente", 4 unless $this_hito == 5;
-	$deployment_url = ($deployment_url =~ /status/)?$deployment_url:"$deployment_url/status";
-	my $status = $ua->get( "$deployment_url" );
-	ok( $status->res, "Despliegue hecho en $deployment_url" );
-	my $status_ref = json_from_status( $status );
-	like ( $status_ref->{'status'}, qr/[Oo][Kk]/, "Status de $deployment_url correcto");
-	if ( $dockerhub_url ) {
-	  my $dockerhub = $ua->get("$dockerhub_url/Dockerfile");
-	  is( $dockerhub->res->code, 200, "Dockerfile actualizado en DockerHub");
-	}
-      }
-    }
-  }
-
-   if ( $this_hito > 5 ) { # Despliegue en algún lado
+  if ( $this_hito >= 6 ) { # Dockerfile y despliegue
     doing("hito 6");
-    my ($provision) = ($README =~ /(?:[Pp]rovision:)\s+(\S+)/);
-    isnt( grep( /$provision/, @repo_files ), "Fichero de provisionamiento presente" );
-    
+    my $make_command = $iv->{'make'};
+    if ( $make_command ) {
+      diag "☑ Hallada orden $make_command";
+    } else {
+      diag "✗ Problemas con la orden del fichero de tareas";
+    }
+    ok( $make_command, "Make hito 6");
+
   }
 
-  if ( $this_hito > 6 ) { # Despliegue en algún lado
+  if ( $this_hito >= 7 ) { # Dockerfile y despliegue
     doing("hito 7");
-    my ($deployment_url) = ($README =~ /(?:Despliegue final|Final deployment):\s+(\S+)\b/);
-    if ( $deployment_url ) {
-      diag "☑ Detectada IP de despliegue $deployment_url";
+    my $recurso = $iv->{'recurso'};
+    my $url_PaaS = $iv->{'PaaS'};
+    if ( $recurso && $url_PaaS ) {
+       diag "☑ Encontrado el recurso";
     } else {
-      diag "✗ Problemas detectando IP de despliegue";
+      diag "✗ Problemas con el recurso del hito 7 o el URL del PaaS";
     }
-    unlike( $deployment_url, qr/(heroku|now)/, "Despliegue efectivamente hecho en IaaS" );
-    if ( ok( $deployment_url, "URL de despliegue hito 5") ) {
-      check_ip($deployment_url);
-      my $status = $ua->get("http://$deployment_url/status");
-      ok( $status->res, "Despliegue correcto en $deployment_url/status" );
-      my $status_ref = json_from_status( $status );
-      like ( $status_ref->{'status'}, qr/[Oo][Kk]/, "Status de $deployment_url correcto");
+    ok( $recurso, "Make hito 7");
+    ok( $url_PaaS, "URL $url_PaaS encontrada");
+    my $metodo = $recurso->{'metodo'};
+    like( $metodo, qr/PUT|POST/, "Método $metodo correcto" );
+    my $payload = $recurso->{'payload'};
+    is( ref $payload, "HASH", "Payload debe ser un hash, no un array" );
+    my $response;
+    if ( $url_PaaS =~ m{/$} ) {
+      chop( $url_PaaS );
     }
-    isnt( grep( /Vagrantfile/, @repo_files), 0, "Vagrantfile presente" );
-    isnt( grep( /despliegue|deployment/, @repo_files), 0, "Hay un directorio 'despliegue'" );
-    isnt( grep( m{(despliegue|deployment)/\w+}, @repo_files), 0, "El directorio 'despliegue' no está vacío" );
+    my $prefix = $url_PaaS."/".$recurso->{'nombre'};
+    my $jsoner = new JSON::XS;
+    if ( $metodo eq 'PUT' ) {
+      ok( $recurso->{'IDs'}, "Se incluyen las IDs de los recursos enviados o devueltos" );
+      for my $id ( @{$recurso->{'IDs'}} ) {
+        my $URI = "$prefix/$id";
+        $response = $ua->put( $URI => json => $payload );
+        is( $response->res->code, 201, "Respuesta a la petición $metodo sobre $URI es correcta");
+        my $location = $response->res->headers->location;
+        if ( ok( $location, "«location» $location devuelto" ) ) {
+          my $get_URI = ( $location =~ /http/ )? $location : $url_PaaS.$location;
+          is( $ua->get($get_URI)->res->code, 200, "Se puede bajar el creado $id" );
+        }
+      }
+    } else {
+      my $json = $jsoner->encode( force_numbers($payload) );
+      diag "Testeando con\n$json";
+      my $response = $ua->post( $prefix => $json );
+      my $mode = "json";
+      if ($response->res->code == 400 ) {
+        $response = $ua->post( $prefix => json => $payload );
+        $mode = ($response->res->code == 400)?"form":"json-plain";
+      }
+      for (my $i = 0; $i <= 3; $i ++ ) {
+        if ( $mode eq "json" ) {
+          $response = $ua->post( $prefix => $json );
+        } elsif ($mode eq "json-plain") {
+          $response = $ua->post( $prefix => json => $payload );
+        } else {
+          $response = $ua->post( $prefix => form => $payload );
+        }
+        is( $response->res->code, 201, "Respuesta a la petición $metodo sobre $prefix es correcta");
+        my $location = $response->res->headers->location;
+        if ( ok( $location, "location «$location» devuelto" ) ) {
+          my $get_URI = ( $location =~ /http/ )? $location : $url_PaaS.$location;
+          is( $ua->get($get_URI)->res->code, 200, "Se puede bajar $location" );
+        }
+      }
+    }
   }
 };
 
@@ -307,3 +309,24 @@ sub json_from_status {
   say "Body → $body";
   return from_json( $body );
 }
+
+sub force_numbers
+{  
+    if (ref $_[0] eq "") {
+      if ( looks_like_number($_[0]) ) {
+        $_[0] += 0;
+      } elsif ( $_[0] =~ /true|false/ ) {
+        if ($_[0] eq 'true' ) {
+          $_[0] = \1;
+        } else {
+          $_[0] = \0;
+        }
+      }
+    } elsif ( ref $_[0] eq 'ARRAY' ){
+        force_numbers($_) for @{$_[0]};
+    } elsif ( ref $_[0] eq 'HASH' ) {
+        force_numbers($_) for values %{$_[0]};
+    }   
+
+    return $_[0];
+} 

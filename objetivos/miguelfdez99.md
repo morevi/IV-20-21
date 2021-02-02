@@ -23,3 +23,42 @@
 - [x] Comprender el uso de los gestores de versiones en diferentes lenguajes de programación
 - [x] Investigar sobre que gestor de tareas se adapta más al proyecto y como utilizarlo
 - [x] Entender los ficheros de dependencias
+
+## Cuarta semana
+- [x] Entender lo que es un contenedor y como funcionan
+- [x] Entender el funcionamiento de Docker
+- [x] Registrarme en DockerHub y comprender su funcionamiento
+- [x] Ejercicios del [Tema 3](https://github.com/miguelfdez99/Ejercicios-IV)
+
+## Sexta semana
+- [x] Entender el concepto de integración continua y a usarla en una aplicación
+- [x] Comenzar con la configuración de los sistemas de integración continua.
+- [x] Comprender cómo las pruebas de software encajan dentro del concepto de infraestructura virtual.
+- [x] Realizar los ejercicios sobre [integración continua](https://github.com/miguelfdez99/Ejercicios-IV/blob/main/docs/ic.md)
+
+## Octava y novena semana
+- [x] Entender el concepto de serverless y su uso en entornos cloud
+- [x] Entender los posibles casos de uso.
+- [x] Entender los errores del hito anterior
+- [x] Darse de alta en [Vercel](https://vercel.com/miguelfdez99)
+- [x] Darse de alta en [Netlify](https://app.netlify.com/teams/miguelfdez99/overview)
+- [x] Entender el concepto de webhook 
+- [x] Entender el concepto de continuous delivery 
+- [x] Ejercicios del tema [Serverless](https://github.com/miguelfdez99/Ejercicios-IV/blob/main/docs/serverless.md)
+
+## Decima semana
+- [x] Actualizar objetivos para entregar el hito 5
+
+## Undécima y duodécima semana
+- [x] Entender los test de integración
+- [x] Entender para que sirven los logs
+- [x] Entender los conceptos de middleware y URI
+- [x] Aprender a usar Express
+- [x] Realizar los ejercicios sobre [microservicios](https://github.com/miguelfdez99/Ejercicios-IV/blob/main/docs/microservicios.md)
+
+## Décimo cuarta semana
+- [x] Entender el concepto de plataforma como servicio.
+- [x] Entender qué pasos intermedios hay entre una aplicación y su paso a producción.
+- [x] Entender la arquitectura de aplicaciones en plataformas-como-servicio.
+- [x] Usar Heroku como PaaS.
+- [x] Realizar los [ejercicios de autoevaluación](https://github.com/miguelfdez99/Ejercicios-IV/blob/main/docs/paas.md) del tema de PaaS

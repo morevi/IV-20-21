@@ -26,3 +26,34 @@
 - [x] Aprender sobre las herramientas de construcción, y el proceso de construcción, minificación o transpilación
 - [x] Qué es la integración contínua y por qué será nuestra amiga y enemiga
 
+## Cuarta y quinta semana
+- [x] Entender Docker y el ecosistema de contenedores.
+- [x] Comprender cómo las pruebas de software encajan dentro del concepto de infraestructura virtual.
+- [x] Conocer las diferentes tecnologías y herramientas de virtualización tanto para procesamiento, comunicación y almacenamiento.
+- [x] Diseñar, implementar y construir un centro de procesamiento de datos virtual.
+- [x] Documentar y mantener una plataforma virtual.
+- [x] Optimizar aplicaciones sobre plataformas virtuales.
+
+## Sexta semana
+- [x] Entender el concepto de integración continua y a usarla en una aplicación.
+- [x] Comenzar con la configuración de los sistemas de integración continua.
+- [x] Comprender cómo las pruebas de software encajan dentro del concepto de infraestructura virtual.
+- [x] Realizar [ejercicios de integración continua](https://github.com/DanielRuizMed/EjerciciosIV/tree/master/session6)
+
+## Séptima, octava y novena semana
+- [x] Darse de alta en Netlify.
+- [x] Crear un bot de Telegram en Vercel.
+- [x] Usando parámetros en funciones serverless.
+- [x] Entender como crear un despliegue serverless para el hito número cinco.
+- [x] Entender la importancia de los loggers para la observabilidad.
+- [x] Realizar [serverless computing](https://github.com/DanielRuizMed/EjerciciosIV/tree/master/session8-9)
+
+## décima y undécima semana
+
+- [x] Entender qué es un test de integración.
+- [x] Entender la importancia de los logs para la observabilidad.
+- [x] Entender el concepto de ruta, middleware y URI.
+- [x] Entender el concepto de middleware en microservicios.
+- [x] Conocer los conceptos relacionados con el proceso de virtualización tanto de software como de hardware y ponerlos en práctica.
+- [x] Justificar la necesidad de procesamiento virtual frente a real en el contexto de una infraestructura TIC de una organización.
+- [x] Realizar ejercicios de [microservicios](https://github.com/DanielRuizMed/EjerciciosIV/tree/master/sesison10).

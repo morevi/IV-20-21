@@ -22,3 +22,26 @@
 - [X] Indagar sobre Node.js
 - [X] Entender cómo funcionan los milestones y las issues de github e incorporarlos al proyecto
 - [X] Entregar el hito 1
+
+
+### Tercera semana
+
+- [X] Entender la importancia del desarrollo basado en tests en aplicaciones de todo tipo.
+- [X] Aprender cómo funcionan los tests unitarios y para qué sirven.
+- [X] Entender la importancia de los gestores de versiones en DevOps y escoger una para nuestro proyecto (Node).
+- [X] Además del anterior punto, escoger las demás herramientas restantes e instalarlas.
+- [X] Comenzar a ver tutoriales sobre el uso de las herramientas instaladas para su correcta utilización.
+- [X] Realizar ejercicios de autoevaluación relacionados con el tema 2.
+  [Enlace ejercicios](https://github.com/Megatorpon/IV-Ejercicios-Autoevaluacion/blob/main/Tema_2)
+  
+ 
+ 
+### Cuarta semana
+
+- [X] Conocer las diferentes tecnologías de virtualización tanto para procesamiento, comunicación y almacenamiento.
+- [X] Entender Docker y su ecosistema de contenedores
+- [X] Entender la importancia y funcionamiento de los Dockerfiles
+- [X] Elegir un contenedor base para el proyecto
+- [X] Subir contenedor a DockerHub y a GitHub Container Registry
+- [X] Realizar ejercicios de autoevaluación relacionados con el tema 3.
+  [Enlace ejercicios](https://github.com/Megatorpon/IV-Ejercicios-Autoevaluacion/tree/main/Tema_3)

@@ -39,3 +39,52 @@
 - [x] Aprender más sobre sintaxis de Go
 
 - [x] Entender la utilidad de los test unitarios
+
+## Cuarta semana
+
+- [x] Entender docker y [cómo hacer y no hacer un Dockerfile](https://github.com/JJ/IV-20-21/blob/master/sesiones/semana-06.md)
+
+- [x] Conectar GitHub con DockerHub y configurar los builds automáticos
+
+- [x] Mejorar la documentación, quitando del README cuestiones de otros hitos
+
+- [x] Darme de alta en Travis
+
+- [x] Tener casi terminado el hito 3
+
+- [x] Entender bien el comando que ejecuta el profe para la corrección,
+sobre todo el parámetro -v
+
+- [x] Entender que hay que añadir un link a GitHub en los objetivos
+
+- [x] Entender que solo se puede cambiar un fichero para pasar los tests
+
+## Quinta semana
+
+- [x] Entender el concepto de integración continua
+
+- [x] Aprender a configurar y usar TravisCI
+
+- [x] Aprender a configurar Shippable
+
+- [x] Realizar el hito 4 documentando lo anterior
+
+- [x] Hacer un PR a un compañero para avanzar su cobertura de tests
+
+- [x] [Hacer los ejercicios 1, 9 y 10](https://github.com/guillelpnz/Ejercicios/blob/master/TDD.md)
+
+## Sexta semana
+
+- [x] Entender el concepto de Serverless computing y usarlo para desplegar
+funciones y acceder a ellas mediante un endpoint.
+- [x] Hacer los [3 ejercicios del tema](https://github.com/guillelpnz/Ejercicios/blob/master/Serverless/serverless.md)
+- [x] Aprender node para desplegar una función en Netlify
+
+## Septima semana
+
+- [x] Entender lo que es un microservicio y cómo pueden testearse siguiendo
+buenas prácticas, como por ejemplo usando middleware.
+
+- [x] Aprender el funcionamiento de los paquetes net/http y net/httptest en Go
+
+- [x] Hacer los [4 ejercicios del tema](https://github.com/guillelpnz/Ejercicios/blob/master/microservicios/microservicios.md)
