@@ -21,5 +21,5 @@
 - [x] Comprender cómo las pruebas de software encajan dentro del concepto de infraestructura virtual.
 - [x] Usar los gestores de versiones en diferentes lenguajes de programación y entender su utilidad (probando, principalmente, Node.js).
 - [x] Entender los ficheros de requisitos o dependencias y su utilidad en las infraestructuras virtuales, enfocándome en el package.json de javascript.
-- [x] Realizar el [ejercicio 2]() y el [ejercicio 7]() del tema, sobre testing y generación de package.json, respectivamente.
+- [x] Realizar el [ejercicio 2](https://github.com/AlbertoLejarraga/Autoevaluacion-IV-2020/blob/main/Semana%203-TDD/Ejercicio%202.md) y el [ejercicio 7](https://github.com/AlbertoLejarraga/Autoevaluacion-IV-2020/blob/main/Semana%203-TDD/Ejercicio%207.md) del tema, sobre testing y generación de package.json, respectivamente.
 - [x] Tratar de seguir profundizando en las buenas prácticas del lenguaje elegido, puesto que antes solo lo había utilizado para el desarrollo de front-end.
