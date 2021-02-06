@@ -5,7 +5,7 @@
 - [x] Comprender la manera en la que se desarrolla la asignatura (es distinta a cualquier otra de la carrera)
 - [x] "Hacerme" a los distintos recursos de la asignatura, la web, el grupo de telegram o las tutorías online
 - [x] Empezar a manejar el sistema de control de fuentes git y la alternativa github
-- [x] Entender el concepto de software libre, su aplicación en esta asignatura y comprobar la facilidad que da github en cuanto a la distribución de este mediante el uso de licencias 
+- [x] Entender el concepto de software libre, su aplicación en esta asignatura y comprobar la facilidad que da github en cuanto a la distribución de este mediante el uso de licencias
 - [x] Vernos las caras en una tutoría online con el profesor
 
 ## Segunda semana
@@ -16,3 +16,10 @@
 - [x] Entender qué implica diseñar un proyecto que se irá elaborando durante la asignatura.
 - [x] En relación a lo anterior, estudiar los distintos tipos de servicios web, viendo cuál es mejor en cada caso, y tomar la decisión de qué tipo de servicio usar para el proyecto
 - [x] Para la entrega en la extraordinaria, revisar todo el proyecto y volver a familiarizarme con los pasos a seguir en la entrega de hitos, además de corregir lo calificado como erróneo en la entrega ordinaria, principalmente en los [ficheros fuente](https://github.com/AlbertoLejarraga/percepcion-relativa-deportistas/tree/master/src)
+
+## Tercera semana (Extraordinaria)
+- [x] Comprender cómo las pruebas de software encajan dentro del concepto de infraestructura virtual.
+- [x] Usar los gestores de versiones en diferentes lenguajes de programación y entender su utilidad (probando, principalmente, Node.js).
+- [x] Entender los ficheros de requisitos o dependencias y su utilidad en las infraestructuras virtuales, enfocándome en el package.json de javascript.
+- [x] Realizar el [ejercicio 2]() y el [ejercicio 7]() del tema, sobre testing y generación de package.json, respectivamente.
+- [x] Tratar de seguir profundizando en las buenas prácticas del lenguaje elegido, puesto que antes solo lo había utilizado para el desarrollo de front-end.
