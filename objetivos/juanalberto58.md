@@ -30,3 +30,12 @@
 - [x] Entender los ficheros de requisitos o dependencias y su utilidad en las infraestructuras virtuales.
 - [x] Actualizar repo [AppIV](https://github.com/juanalberto58/AppIV) 
 - [x] Resubir para convocatoria extraordinaria
+
+## Cuarta semana
+
+- [x] Aprender que es Docker y la funcionalidad que tiene.
+- [x] Aprender a construir ficheros Dockerfile para configurar contenedores.
+- [x] Seleccionar que imagen es la más adecuada para el proyecto.
+- [x] Actualizar el repositorio de [Ejercicios de Autoevaluación](https://github.com/juanalberto58/EjerciciosIV).
+- [x] Actualizar repo [AppIV](https://github.com/juanalberto58/AppIV) 
+- [x] Resubir para convocatoria extraordinaria
