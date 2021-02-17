@@ -52,6 +52,7 @@ Los ejercicios se encuentran en este [repositorio](https://github.com/morevi/iv-
 - [x] Entender los posibles casos de uso.
 
 ## Objetivos a cumplir durante la novena semana
+[Aquí](https://github.com/morevi/iv-ejercicios/blob/main/serverless.md)
 - [x] Entender el concepto de *webhook* con ejemplos como [este](https://docs.github.com/es/free-pro-team@latest/actions/reference/events-that-trigger-workflows#workflow_dispatch) o [aquí](https://github.community/t/triggering-actions-by-other-repository-webhooks/16295/3)
 - [x] Entender el manejo de los productos cloud de diferentes empresas.
 - [x] Entender el concepto de *continuous delivery* o publicación continua.
